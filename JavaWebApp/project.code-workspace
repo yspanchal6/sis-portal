@@ -1,0 +1,34 @@
+{
+	"folders": [
+		{
+			"path": "../.."
+		},
+		{
+			"name": "student-information-system",
+			"path": ".."
+		}
+	],
+	"settings": {
+		"sqltools.connections": [
+			{
+				"connectionTimeout": 15,
+				"mssqlOptions": {
+					"appName": "SQLTools",
+					"useUTC": true,
+					"encrypt": true,
+					"trustServerCertificate": false,
+					"abortTransactionOnError": true
+				},
+				"ssh": "Disabled",
+				"previewLimit": 50,
+				"server": "localhost",
+				"port": 3306,
+				"driver": "MSSQL",
+				"name": "sisdb",
+				"username": "root",
+				"password": "root"
+			}
+		],
+		"deepscan.enable": true
+	}
+}

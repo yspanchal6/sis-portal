@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Dashboard - Student Information System</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <a href="#">Student Information System</a>
+        </div>
+        <div class="nav-user">
+            <span class="role-badge role-teacher">TEACHER</span>
+            <span id="userName">Teacher</span>
+            <button onclick="logout()" class="btn btn-logout">Logout</button>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h3>Menu</h3>
+            </div>
+            <ul class="nav-menu">
+                <li class="active"><a href="#dashboard" onclick="showSection('dashboard')">&#128202; Dashboard</a></li>
+                <li><a href="#my-courses" onclick="showSection('my-courses')">&#128218; My Courses</a></li>
+                <li><a href="#my-grades" onclick="showSection('my-grades')">&#128202; My Grades</a></li>
+            </ul>
+        </aside>
+        
+        <main class="main-content">
+            <section id="dashboard" class="section active">
+                <h2>Teacher Dashboard</h2>
+                <div class="stats-grid">
+                    <div class="stat-card stat-purple">
+                        <div class="stat-icon">&#128218;</div>
+                        <div class="stat-info">
+                            <h4>My Courses</h4>
+                            <h2 id="myCourses">0</h2>
+                        </div>
+                    </div>
+                    <div class="stat-card stat-blue">
+                        <div class="stat-icon">&#128104;&#8205;&#127891;</div>
+                        <div class="stat-info">
+                            <h4>Total Students</h4>
+                            <h2 id="totalStudents">0</h2>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="my-courses" class="section">
+                <h2>My Courses</h2>
+                <div class="table-responsive">
+                    <table id="coursesTable" class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Code</th>
+                                <th>Course Name</th>
+                                <th>Credits</th>
+                                <th>Capacity</th>
+                                <th>Enrolled</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </section>
+            
+            <section id="my-grades" class="section">
+                <div class="section-header">
+                    <h2>Student Grades</h2>
+                    <button onclick="showModal('addGradeModal')" class="btn btn-success">+ Add Grade</button>
+                </div>
+                <div class="table-responsive">
+                    <table id="gradesTable" class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Student</th>
+                                <th>Course</th>
+                                <th>Marks</th>
+                                <th>Grade</th>
+                                <th>Semester</th>
+                                <th>Year</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+    
+    <div id="addGradeModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add Grade</h3>
+                <span onclick="hideModal('addGradeModal')" class="close">&times;</span>
+            </div>
+            <form id="addGradeForm">
+                <div class="form-group">
+                    <label>Select Student</label>
+                    <select name="roll_no" id="gradeStudentSelect" required></select>
+                </div>
+                <div class="form-group">
+                    <label>Select Course</label>
+                    <select name="courseCode" id="gradeCourseSelect" required></select>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Marks (0-100)</label>
+                        <input type="number" step="0.1" name="marks" min="0" max="100" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Semester</label>
+                        <input type="text" name="semester" value="1" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Academic Year</label>
+                    <input type="number" name="academicYear" value="2026" required>
+                </div>
+                <input type="hidden" name="action" value="add">
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-success">Save</button>
+                    <button type="button" onclick="hideModal('addGradeModal')" class="btn btn-secondary">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script src="js/api.js"></script>
+    <script src="js/teacher.js"></script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - Student Information System</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <a href="#">Student Information System</a>
+        </div>
+        <div class="nav-user">
+            <span class="role-badge role-student">STUDENT</span>
+            <span id="userName">Student</span>
+            <button onclick="logout()" class="btn btn-logout">Logout</button>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h3>Menu</h3>
+            </div>
+            <ul class="nav-menu">
+                <li class="active"><a href="#dashboard" onclick="showSection('dashboard')">&#128202; Dashboard</a></li>
+                <li><a href="#profile" onclick="showSection('profile')">&#128100; My Profile</a></li>
+                <li><a href="#my-courses" onclick="showSection('my-courses')">&#128218; My Courses</a></li>
+                <li><a href="#my-grades" onclick="showSection('my-grades')">&#128202; My Grades</a></li>
+                <li><a href="#my-enrollments" onclick="showSection('my-enrollments')">&#128221; My Enrollments</a></li>
+            </ul>
+        </aside>
+        
+        <main class="main-content">
+            <section id="dashboard" class="section active">
+                <h2>Student Dashboard</h2>
+                <div class="stats-grid">
+                    <div class="stat-card stat-blue">
+                        <div class="stat-icon">&#128218;</div>
+                        <div class="stat-info">
+                            <h4>Enrolled Courses</h4>
+                            <h2 id="enrolledCourses">0</h2>
+                        </div>
+                    </div>
+                    <div class="stat-card stat-green">
+                        <div class="stat-icon">&#128202;</div>
+                        <div class="stat-info">
+                            <h4>Total Grades</h4>
+                            <h2 id="totalGrades">0</h2>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="profile" class="section">
+                <h2>My Profile</h2>
+                <div class="profile-card" id="profileCard">
+                    <div class="profile-avatar">S</div>
+                    <div class="profile-info">
+                        <p><strong>Name:</strong> <span id="profileName">-</span></p>
+                        <p><strong>Roll No:</strong> <span id="profileRollNo">-</span></p>
+                        <p><strong>Email:</strong> <span id="profileEmail">-</span></p>
+                        <p><strong>Class:</strong> <span id="profileClass">-</span></p>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="my-courses" class="section">
+                <h2>My Enrolled Courses</h2>
+                <div class="table-responsive">
+                    <table id="coursesTable" class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Course Code</th>
+                                <th>Course Name</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </section>
+            
+            <section id="my-grades" class="section">
+                <h2>My Grades</h2>
+                <div class="table-responsive">
+                    <table id="gradesTable" class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Course</th>
+                                <th>Marks</th>
+                                <th>Grade</th>
+                                <th>Semester</th>
+                                <th>Year</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </section>
+            
+            <section id="my-enrollments" class="section">
+                <h2>My Enrollments</h2>
+                <div class="table-responsive">
+                    <table id="enrollmentsTable" class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Course</th>
+                                <th>Enrollment Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+    
+    <script src="js/api.js"></script>
+    <script src="js/student.js"></script>
+</body>
+</html>

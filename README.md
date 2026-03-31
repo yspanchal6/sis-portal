@@ -1,102 +1,145 @@
 # Student Information System (SIS)
 
-A console-based Student Information System built with **Core Java 17** and **Maven**.
+A comprehensive Java web application for managing student information, designed for educational institutions.
 
 ## Features
 
-| Feature              | Admin | Teacher | Student |
-|----------------------|-------|---------|---------|
-| Manage Students      | ✅    | —       | —       |
-| Manage Teachers      | ✅    | —       | —       |
-| Manage Courses       | ✅    | —       | —       |
-| Manage Schedules     | ✅    | —       | —       |
-| View All Records     | ✅    | —       | —       |
-| View Assigned Courses| —     | ✅      | —       |
-| Assign Grades        | —     | ✅      | —       |
-| Mark Attendance      | —     | ✅      | —       |
-| Enroll / Withdraw    | —     | —       | ✅      |
-| View My Grades & GPA | —     | —       | ✅      |
-| View My Schedule     | —     | —       | ✅      |
-| View My Attendance   | —     | —       | ✅      |
-| Change Password      | ✅    | ✅      | ✅      |
+- **Role-based Access Control**
+  - Administrator: Full CRUD for students, teachers, courses, grades
+  - Teacher: Manage grades and view assigned courses
+  - Student: View personal information, grades, and schedule
 
-## Architecture
+- **Core Modules**
+  - Student Management
+  - Teacher Management
+  - Course Management
+  - Grade Management
+  - Enrollment System
+  - Attendance Tracking
+  - Schedule Management
+
+## Technology Stack
+
+- **Backend**: Java 17 + Jetty Server
+- **Database**: MySQL (XAMPP)
+- **Frontend**: HTML5, CSS3, JavaScript
+- **Build Tool**: Maven
+
+## Quick Start
+
+### Prerequisites
+
+- JDK 17 or higher
+- XAMPP with MySQL (port 3308)
+- Maven (included via Maven wrapper)
+
+### Installation
+
+1. **Start XAMPP MySQL**
+   - Open XAMPP Control Panel
+   - Start MySQL service
+
+2. **Setup Database**
+   ```bash
+   cd JavaWebApp
+   run_sql.bat
+   ```
+
+3. **Build the Application**
+   ```bash
+   cd JavaWebApp
+   mvnw.cmd clean package -DskipTests
+   ```
+
+4. **Run the Server**
+   ```bash
+   java -jar target\student-information-system-web-1.0-SNAPSHOT.jar
+   ```
+
+5. **Access the Application**
+   Open browser: http://localhost:8080/index.html
+
+## Project Structure
 
 ```
-com.sis
-├── Main.java                  ← entry point + demo data seeder
-├── model/                     ← domain entities
-│   ├── User.java (abstract)
-│   ├── Admin.java
-│   ├── Teacher.java
-│   ├── Student.java
-│   ├── Course.java
-│   ├── Grade.java
-│   ├── Enrollment.java
-│   ├── Schedule.java
-│   ├── Attendance.java
-│   └── Role.java
-├── repository/                ← in-memory data stores
-│   ├── Repository.java (interface)
-│   ├── InMemoryRepository.java (abstract)
-│   ├── UserRepository.java
-│   ├── StudentRepository.java
-│   ├── TeacherRepository.java
-│   ├── CourseRepository.java
-│   ├── GradeRepository.java
-│   ├── EnrollmentRepository.java
-│   ├── ScheduleRepository.java
-│   └── AttendanceRepository.java
-├── service/                   ← business logic
-│   ├── AppContext.java        ← lightweight DI container
-│   ├── AuthService.java
-│   ├── StudentService.java
-│   ├── TeacherService.java
-│   ├── CourseService.java
-│   ├── GradeService.java
-│   ├── EnrollmentService.java
-│   ├── ScheduleService.java
-│   └── AttendanceService.java
-└── ui/                        ← console menus
-    ├── AdminMenu.java
-    ├── TeacherMenu.java
-    └── StudentMenu.java
+student-information-system/
+├── JavaWebApp/              # Main web application
+│   ├── src/main/java/        # Java source code
+│   │   └── com/sis/
+│   │       ├── api/         # REST API Servlets
+│   │       └── db/          # Database Access Objects
+│   ├── src/main/resources/   # Web resources (HTML, CSS, JS)
+│   ├── sisdb_complete.sql    # Database schema & sample data
+│   └── pom.xml              # Maven configuration
+├── README.md
+├── RELEASE_NOTES.md
+└── setup.bat                 # Quick setup script
 ```
 
-## Prerequisites
+## Login Credentials
 
-- Java 17+
-- Maven 3.8+
+| Role    | Username | Password   |
+|---------|----------|------------|
+| Admin   | admin    | admin123   |
+| Teacher | mrsmith  | teach123   |
+| Student | alice    | alice123   |
 
-## Build & Run
+## API Endpoints
 
+| Endpoint              | Method | Description              |
+|----------------------|--------|--------------------------|
+| `/api/login`          | POST   | User authentication      |
+| `/api/logout`         | POST   | User logout             |
+| `/api/students`       | GET    | List all students        |
+| `/api/students`       | POST   | Add new student          |
+| `/api/students/:id`   | PUT    | Update student           |
+| `/api/students/:id`   | DELETE | Delete student          |
+| `/api/teachers`       | GET    | List all teachers       |
+| `/api/courses`        | GET    | List all courses        |
+| `/api/grades`         | GET    | List all grades         |
+| `/api/enrollments`    | GET    | List enrollments        |
+
+## Database Schema
+
+- `users` - User accounts and authentication
+- `student` - Student personal information
+- `techer_db` - Teacher information
+- `course` - Course catalog
+- `grades` - Student grades
+- `enroll` - Student course enrollments
+- `attendance` - Attendance records
+- `schedule` - Course schedules
+
+## Configuration
+
+Database connection settings in `DatabaseConnection.java`:
+```java
+Host: localhost
+Port: 3308
+Database: sisdb
+Username: root
+Password: (empty)
+```
+
+## Development
+
+### Using Maven Wrapper
 ```bash
-# Compile
-mvn compile
-
-# Run directly
-mvn exec:java -Dexec.mainClass=com.sis.Main
-
-# Build a fat JAR and run
-mvn package
-java -jar target/student-information-system-1.0-SNAPSHOT.jar
+cd JavaWebApp
+mvnw.cmd clean package    # Build
+mvnw.cmd test             # Run tests
 ```
 
-## Demo Credentials
+### Manual Build
+```bash
+cd JavaWebApp
+mvn clean package
+```
 
-| Role    | Username | Password  |
-|---------|----------|-----------|
-| Admin   | admin    | admin123  |
-| Teacher | mrsmith  | teach123  |
-| Teacher | msjones  | teach456  |
-| Student | alice    | alice123  |
-| Student | bob      | bob123    |
+## License
 
-## Demo Data
+This project is for educational purposes.
 
-On startup the system seeds:
-- **3 courses**: CS101 (Intro to Programming), CS201 (Data Structures), MA101 (Calculus I)
-- **4 schedules** across the week
-- **2 students** enrolled in various courses, with grades and attendance records
+## Author
 
-Type `exit` at the login prompt to quit the application.
+Student Project - B.E. Computer Engineering
