@@ -1,8 +1,19 @@
+
+# Build Stage
+FROM maven:3.9.6-eclipse-temurin-17 AS build
+
+WORKDIR /app
+
+COPY . .
+
+RUN mvn clean package
+
+# Tomcat Stage
 FROM tomcat:10.1
 
 RUN rm -rf /usr/local/tomcat/webapps/*
 
-COPY target/student-information-system-web-1.0-SNAPSHOT.war /usr/local/tomcat/webapps/ROOT.war
+COPY --from=build /app/target/*.war /usr/local/tomcat/webapps/ROOT.war
 
 EXPOSE 8080
 
