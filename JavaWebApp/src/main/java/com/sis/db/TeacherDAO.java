@@ -7,7 +7,7 @@ public class TeacherDAO {
     
     public List<Map<String, Object>> getAllTeachers() {
         List<Map<String, Object>> teachers = new ArrayList<>();
-        String sql = "SELECT * FROM techer_db ORDER BY teacher_id DESC";
+        String sql = "SELECT * FROM teacher_db ORDER BY teacher_id DESC";
         
         try (Connection conn = DatabaseConnection.getConnection();
              Statement stmt = conn.createStatement();
@@ -23,7 +23,7 @@ public class TeacherDAO {
     }
     
     public Map<String, Object> getTeacherById(int teacherId) {
-        String sql = "SELECT * FROM techer_db WHERE teacher_id = ?";
+        String sql = "SELECT * FROM teacher_db WHERE teacher_id = ?";
         
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -42,7 +42,7 @@ public class TeacherDAO {
     
     public boolean addTeacher(String name, String email, String qualification, 
                             String phone, double salary, String dept) {
-        String sql = "INSERT INTO techer_db (name, email_id, qualification, phone_number, salary, dept_name) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO teacher_db (name, email_id, qualification, phone_number, salary, dept_name) VALUES (?, ?, ?, ?, ?, ?)";
         
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -64,7 +64,7 @@ public class TeacherDAO {
     public boolean updateTeacher(int teacherId, String name, String email, 
                                  String qualification, String phone, 
                                  double salary, String dept) {
-        String sql = "UPDATE techer_db SET name=?, email_id=?, qualification=?, phone_number=?, salary=?, dept_name=? WHERE teacher_id=?";
+        String sql = "UPDATE teacher_db SET name=?, email_id=?, qualification=?, phone_number=?, salary=?, dept_name=? WHERE teacher_id=?";
         
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {

@@ -15,7 +15,7 @@ if errorlevel 1 (
 )
 
 echo [2/4] Checking MySQL...
-echo Make sure XAMPP MySQL is running on port 3308
+echo Make sure XAMPP MySQL is running on port 3306
 echo.
 
 echo [3/4] Setting up database...
