@@ -10,13 +10,13 @@ public class DatabaseConnection {
             "com.mysql.cj.jdbc.Driver";
 
     private static final String URL =
-            System.getenv("DB_URL");
+            System.getenv("mysql://root:JTXUpGFtClMDSrEaXNwZJdZDXKryJceV@tramway.proxy.rlwy.net:20945/railway");
 
     private static final String USER =
-            System.getenv("DB_USER");
+            System.getenv("root");
 
     private static final String PASSWORD =
-            System.getenv("DB_PASSWORD");
+            System.getenv("JTXUpGFtClMDSrEaXNwZJdZDXKryJceV");
 
     public static Connection getConnection()
             throws SQLException {
